@@ -18,6 +18,18 @@ public struct TableViewDataSource<T: AnyObject, U: UITableViewCell where U: Reus
         self.configurator = configurator
     }
     
+    public func numberOfSections() -> Int {
+        return dataSource.sections.count
+    }
+    
+    public func numberOfRowsInSection(section: Int) -> Int {
+        return dataSource.numberOfItemsInSection(section)
+    }
+    
+    public func itemAtIndexPath(indexPath: NSIndexPath) -> T {
+        return dataSource.itemAtIndexPath(indexPath)
+    }
+    
     public func toObjC() -> TableViewDataSourceObjC {
         let sections = dataSource.sections.map { section in section.toObjC() }
         let configurator = self.configurator
